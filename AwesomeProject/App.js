@@ -7,7 +7,7 @@ import RootStackScreen from "./components/RootStackScreen";
 import CustomerNav from "./components/CustomerNav";
 import TransporterNav from "./components/TransporterNav";
 import { AuthContext } from "./components/Context";
-const API_URL = "http://192.168.128.39:5000";
+const API_URL = "http://192.168.246.39:5000";
 export default function App() {
   const [cust, setCust] = useState(false);
   const [trans, setTrans] = useState(false);
@@ -47,8 +47,8 @@ export default function App() {
         console.log(await res.json());
         console.log(AsyncStorage.getItem("authToken"));
         // history.push("/Customersignin");
-        AsyncStorage.clear();
-        AsyncStorage.removeItem("authToken");
+        await AsyncStorage.clear();
+        await AsyncStorage.removeItem("authToken");
         console.log(AsyncStorage.getItem("authToken"));
         setCust(false);
         setTrans(false);

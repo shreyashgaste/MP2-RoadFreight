@@ -16,8 +16,13 @@ import CustomerHistory from "../screens/Customer/CustomerHistory";
 import PendingOrder from "../screens/Customer/PendingOrder";
 import TruckBooking from "../screens/Customer/TruckBooking";
 import Signout from "../screens/Common/Signout";
+import CustomerProfile from "../screens/Customer/CustomerProfile";
 import CustomerTruckList from "../screens/Truck/CustomerTruckList";
-import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import {
+  Ionicons,
+  MaterialCommunityIcons,
+  AntDesign,
+} from "@expo/vector-icons";
 import CustomDrawer from "./CustomDrawer";
 import Payment from "../screens/Customer/Payment";
 const Drawer = createDrawerNavigator();
@@ -104,7 +109,6 @@ export default function CustomerNav() {
               size={24}
               color={focused ? "white" : "grey"}
             />
-            
           ),
         }}
       />
@@ -122,7 +126,7 @@ export default function CustomerNav() {
           ),
         }}
       />
-      <Drawer.Screen
+      {/* <Drawer.Screen
         name="Contact"
         component={Contact}
         options={{
@@ -135,18 +139,14 @@ export default function CustomerNav() {
             />
           ),
         }}
-      />
+      /> */}
       <Drawer.Screen
-        name="Settings"
-        component={Settings}
+        name="CustomerProfile"
+        component={CustomerProfile}
         options={{
           headerTitle: "",
           drawerIcon: ({ focused }) => (
-            <Ionicons
-              name="settings-outline"
-              size={24}
-              color={focused ? "white" : "grey"}
-            />
+            <AntDesign name="profile" size={24} color={focused ? "white" : "grey"} />
           ),
         }}
       />

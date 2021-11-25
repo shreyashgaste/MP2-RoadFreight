@@ -7,29 +7,10 @@ import {
 import{ AuthContext } from './Context';
 import { Ionicons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-const API_URL = "http://192.168.128.39:5000";
+const API_URL = "http://192.168.246.39:5000";
 const CustomDrawer = (props) => {
   const { signOut, toggleTheme } = React.useContext(AuthContext);
-  // const handleSignout = async (e) => {
-  //   e.preventDefault();
-  //   const res = await fetch(`${API_URL}/logout`, {
-  //     method: "GET",
-  //     headers: {
-  //       Accept: "application/json",
-  //       "Content-Type": "application/json",
-  //     },
-  //     credentials: "include",
-  //   });
-  //   console.log(res.status);
-  //   console.log(await res.json());
-  //   console.log(AsyncStorage.getItem("authToken"));
-  //   // history.push("/Customersignin");
-  //   AsyncStorage.clear();
-  //   AsyncStorage.removeItem("authToken");
-  //   console.log(AsyncStorage.getItem("authToken"));
-  //   props.navigation.navigate("Signout");
-  //   // BackHandler.exitApp();
-  // };
+ 
   return (
     <View style={{ flex: 1 }}>
       <DrawerContentScrollView

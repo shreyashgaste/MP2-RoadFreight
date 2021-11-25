@@ -19,7 +19,8 @@ import TruckDetails from "../screens/Transporter/TruckDetails";
 import Update from "../screens/Transporter/Update";
 import RegisterTruck from "../screens/Truck/RegisterTruck";
 import Signout from "../screens/Common/Signout";
-import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
+import TransporterProfile from "../screens/Transporter/TransporterProfile";
+import { Ionicons, MaterialCommunityIcons, AntDesign } from "@expo/vector-icons";
 import CustomDrawer from "./CustomDrawer";
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -128,7 +129,7 @@ export default function TransporterNav() {
           ),
         }}
       />
-      <Drawer.Screen
+      {/* <Drawer.Screen
         name="Contact"
         component={Contact}
         options={{
@@ -141,18 +142,14 @@ export default function TransporterNav() {
             />
           ),
         }}
-      />
-      <Drawer.Screen
-        name="Settings"
-        component={Settings}
+      /> */}
+     <Drawer.Screen
+        name="TransporterProfile"
+        component={TransporterProfile}
         options={{
           headerTitle: "",
           drawerIcon: ({ focused }) => (
-            <Ionicons
-              name="settings-outline"
-              size={24}
-              color={focused ? "white" : "grey"}
-            />
+            <AntDesign name="profile" size={24} color={focused ? "white" : "grey"} />
           ),
         }}
       />

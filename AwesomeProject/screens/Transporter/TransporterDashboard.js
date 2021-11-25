@@ -11,7 +11,7 @@ import {
   Alert
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-const API_URL = "http://192.168.128.39:5000";
+const API_URL = "http://192.168.246.39:5000";
 const TransporterDashboard = ({ navigation }) => {
   useEffect(() => {
     async function fetchTransporter() {

@@ -13,7 +13,7 @@ import {
 import { Formik } from "formik";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useState, useEffect } from "react";
-const API_URL = "http://192.168.128.39:5000";
+const API_URL = "http://192.168.246.39:5000";
 const CustomerSignin = ({ navigation }) => {
   const [text, setText] = useState("");
   useEffect(() => {
@@ -70,8 +70,8 @@ const CustomerSignin = ({ navigation }) => {
               password: "",
             }}
             onSubmit={(values) => {
-              // Alert.alert(JSON.stringify(values));
-              // handleSignin(values);
+              Alert.alert(JSON.stringify(values));
+              handleSignin(values);
             }}
           >
             {({ handleChange, handleSubmit, values }) => (

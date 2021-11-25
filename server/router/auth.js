@@ -85,6 +85,36 @@ router.route("/register").post(async (req, res) => {
   }
 });
 
+
+router.route("/transprofile/:transemail").post(async (req, res) => {
+  const transemail = req.body.transporterEmail;
+  console.log(transemail);
+  try {
+    const user = await Transporter.findOne({
+      email: transemail
+    });
+    console.log(user);
+    res.json(user);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+router.route("/custprofile/:custemail").post(async (req, res) => {
+  const custemail = req.body.customerEmail;
+  console.log(custemail);
+  try {
+    const user = await User.findOne({
+      email: custemail
+    });
+    console.log(user);
+    res.json(user);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+
 router.route("/addTruck").post(async (req, res) => {
   const {
     name,

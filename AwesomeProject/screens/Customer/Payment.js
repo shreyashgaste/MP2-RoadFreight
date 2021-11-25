@@ -12,7 +12,7 @@ import {
 } from "react-native";
 import { Formik } from "formik";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-const API_URL = "http://192.168.128.39:5000";
+const API_URL = "http://192.168.246.39:5000";
 const Payment = ({ route, navigation }) => {
   const { truckData, userEmail, Dt, typeofGoods } = route.params;
   const handleConfirm = async (values) => {

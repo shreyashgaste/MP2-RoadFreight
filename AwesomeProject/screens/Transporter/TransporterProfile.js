@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
@@ -11,25 +12,25 @@ import {
   Alert,
 } from "react-native";
 const API_URL = "http://192.168.246.39:5000";
-const TruckDetails = ({ route, navigation }) => {
-  const { truckNo } = route.params;
-  const [truck, setTruck] = useState([""]);
+const TransporterProfile = ({ navigation }) => {
+  const [user, setUser] = useState([""]);
   useEffect(() => {
     async function fetchData() {
-      console.log(truckNo);
-      await fetch(`${API_URL}/truck/${truckNo}`, {
+      const email = await AsyncStorage.getItem("transemail");
+      console.log(email);
+      await fetch(`${API_URL}/transprofile/${email}`, {
         method: "POST",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          number: truckNo,
+          transporterEmail: email,
         }),
       })
         .then(async (res) => await res.json())
         .then((data) => {
-          setTruck(data);
+          setUser(data);
           // console.log(data);
         });
     }
@@ -40,23 +41,19 @@ const TruckDetails = ({ route, navigation }) => {
       <View style={styles.content}>
         <ScrollView>
           <View>
-            <Text style={styles.heading}>DETAILS</Text>
+            <Text style={styles.heading}>PROFILE</Text>
           </View>
           <View style={styles.table}>
-            <Text style={styles.item}>Truck Name</Text>
-            <Text style={styles.item}>:   {truck.name}</Text>
-            <Text style={styles.item}>Truck Number</Text>
-            <Text style={styles.item}>:   {truck.number}</Text>
-            <Text style={styles.item}>Truck Company</Text>
-            <Text style={styles.item}>:   {truck.company}</Text>
-            <Text style={styles.item}>Truck Capacity</Text>
-            <Text style={styles.item}>:   {truck.capacitty}</Text>
-            <Text style={styles.item}>Pick up City</Text>
-            <Text style={styles.item}>:   {truck.pickupcity}</Text>
-            <Text style={styles.item}>Drop City</Text>
-            <Text style={styles.item}>:   {truck.dropcity}</Text>
-            <Text style={styles.item}>TRUCK PRICE</Text>
-            <Text style={styles.item}>:   {truck.price}</Text>
+            <Text style={styles.item}>Name</Text>
+            <Text style={styles.item}>: {user.name}</Text>
+            <Text style={styles.item}>Email</Text>
+            <Text style={styles.item}>: {user.email}</Text>
+            <Text style={styles.item}>Phone</Text>
+            <Text style={styles.item}>: {user.phone}</Text>
+            <Text style={styles.item}>Company</Text>
+            <Text style={styles.item}>: {user.company}</Text>
+            <Text style={styles.item}>Address</Text>
+            <Text style={styles.item}>: {user.address}</Text>
             <View />
             <View style={styles.line} />
 
@@ -70,7 +67,7 @@ const TruckDetails = ({ route, navigation }) => {
   );
 };
 
-export default TruckDetails;
+export default TransporterProfile;
 
 const styles = StyleSheet.create({
   container: {
