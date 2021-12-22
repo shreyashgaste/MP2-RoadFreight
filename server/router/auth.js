@@ -489,6 +489,8 @@ router.route("/transConfirm").post(async (req, res) => {
       status,
     } = req.body;
     console.log(req.body.date);
+    console.log(status);
+    console.log(transconfirm);
     const r = await Booking.findOneAndUpdate(
       {
         user,

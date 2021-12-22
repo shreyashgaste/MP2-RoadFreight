@@ -11,7 +11,7 @@ import {
   Alert,
 } from "react-native";
 import { Formik } from "formik";
-const API_URL = "http://192.168.246.39:5000";
+const API_URL = "http://192.168.222.39:5000";
 const TransporterSignup = ({ navigation }) => {
   const handleSignup = async (values) => {
     if (values.email !== "") {
@@ -59,7 +59,7 @@ const TransporterSignup = ({ navigation }) => {
             } else {
               Alert.alert("Success");
               // navigation.navigate("TransporterSignin");
-              Alert.alert("Please restart the app to sign in.");
+              // Alert.alert("Please restart the app to sign in.");
             }
           })
           .catch((error) => {

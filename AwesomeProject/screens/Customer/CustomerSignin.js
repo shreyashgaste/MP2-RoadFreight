@@ -8,18 +8,21 @@ import {
   TextInput,
   SafeAreaView,
   Alert,
-  ActivityIndicator
+  ActivityIndicator,
 } from "react-native";
 import { Formik } from "formik";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import React, { useState, useEffect } from "react";
-const API_URL = "http://192.168.246.39:5000";
+import React, { useState, useEffect, useContext } from "react";
+import { AuthContext } from "../../components/Context";
+const API_URL = "http://192.168.222.39:5000";
 const CustomerSignin = ({ navigation }) => {
+  const { cust, toggleCust } = useContext(AuthContext);
   const [text, setText] = useState("");
   useEffect(() => {
     async function fetchCustomer() {
       const response = AsyncStorage.getItem("authToken");
-      if (response) {}
+      if (response) {
+      }
     }
     fetchCustomer();
   }, []);
@@ -43,6 +46,7 @@ const CustomerSignin = ({ navigation }) => {
           navigation.navigate("CustomerSignup");
         } else {
           Alert.alert("Success");
+
           let { token } = data;
           console.log(token);
           await AsyncStorage.setItem("user_email", values.email);
@@ -50,6 +54,7 @@ const CustomerSignin = ({ navigation }) => {
           console.log(await AsyncStorage.getItem("authToken"));
           console.log(JSON.stringify(await AsyncStorage.getItem("user_email")));
           setText(" ");
+          toggleCust(true);
           // navigation.navigate("CustomerDashboard");
         }
       })
@@ -70,7 +75,7 @@ const CustomerSignin = ({ navigation }) => {
               password: "",
             }}
             onSubmit={(values) => {
-              Alert.alert(JSON.stringify(values));
+              // Alert.alert(JSON.stringify(values));
               handleSignin(values);
             }}
           >
@@ -82,7 +87,7 @@ const CustomerSignin = ({ navigation }) => {
                   padding: 20,
                   marginBottom: 20,
                   borderWidth: 1,
-                  borderColor: "grey"
+                  borderColor: "grey",
                 }}
               >
                 <TextInput
@@ -127,18 +132,21 @@ const CustomerSignin = ({ navigation }) => {
             )}
           </Formik>
           <View>
-          <Pressable
-                  style={[{ backgroundColor: "#8200d6", width: "100%" }, styles.button]}
-                  onPress={()=> navigation.navigate("TransporterSignin")}
-                  android_ripple={{ color: "black" }}
-                >
-                  <Text style={[{ color: "white" }, styles.buttonText]}>
-                    Not a Customer? 
-                  </Text>
-                  <Text style={[{ color: "white" }, styles.buttonText]}>
-                    Log in as Transporter...
-                  </Text>
-                </Pressable>
+            <Pressable
+              style={[
+                { backgroundColor: "#8200d6", width: "100%" },
+                styles.button,
+              ]}
+              onPress={() => navigation.navigate("TransporterSignin")}
+              android_ripple={{ color: "black" }}
+            >
+              <Text style={[{ color: "white" }, styles.buttonText]}>
+                Not a Customer?
+              </Text>
+              <Text style={[{ color: "white" }, styles.buttonText]}>
+                Log in as Transporter...
+              </Text>
+            </Pressable>
           </View>
         </ScrollView>
       </View>

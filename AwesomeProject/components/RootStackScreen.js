@@ -11,7 +11,7 @@ const RootStack = createStackNavigator();
 
 const RootStackScreen = ({ navigation }) => {
   useEffect(() => {
-    Alert.alert("Session timeout in 30 seconds");
+    // Alert.alert("Session timeout in 20 seconds");
   }, []);
   return (
     <RootStack.Navigator headerShown={false}>

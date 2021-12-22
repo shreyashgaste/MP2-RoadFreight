@@ -11,7 +11,7 @@ import {
   SafeAreaView,
   Alert,
 } from "react-native";
-const API_URL = "http://192.168.246.39:5000";
+const API_URL = "http://192.168.222.39:5000";
 const CustomerProfile = ({ navigation }) => {
   const [user, setUser] = useState([""]);
   useEffect(() => {

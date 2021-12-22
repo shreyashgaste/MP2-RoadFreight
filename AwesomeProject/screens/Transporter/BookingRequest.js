@@ -11,7 +11,7 @@ import {
   Alert,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-const API_URL = "http://192.168.246.39:5000";
+const API_URL = "http://192.168.222.39:5000";
 const BookingRequest = (navigation) => {
   const [data, setdata] = useState([]);
   const loadData = async (e) => {
@@ -34,8 +34,7 @@ const BookingRequest = (navigation) => {
       });
     // data.sort((a, b) => (a.date > b.date) ? 1 : -1);
   };
-  const handleConfirm = async (e, truck, transconfirm) => {
-    e.preventDefault();
+  const handleConfirm = async (truck, transconfirmState, bookingState) => {
     console.log(truck.truckid);
     console.log(truck._id);
     await fetch(`${API_URL}/transConfirm`, {
@@ -55,8 +54,8 @@ const BookingRequest = (navigation) => {
         truckNo: truck.truckid,
         typeofgoods: truck.typeofgoods,
         price: truck.price,
-        status: true,
-        transconfirm: transconfirm,
+        transconfirm: transconfirmState,
+        status: bookingState,
       }),
     })
       .then(async(res) => await res.json())
@@ -104,7 +103,7 @@ const BookingRequest = (navigation) => {
                       styles.button,
                     ]}
                     onPress={(e) => {
-                      handleConfirm(e, truck, true);
+                      handleConfirm(truck, true, true);
                     }}
                     android_ripple={{ color: "black" }}
                   >
@@ -118,7 +117,7 @@ const BookingRequest = (navigation) => {
                       styles.button,
                     ]}
                     onPress={(e) => {
-                      handleConfirm(e, truck, false);
+                      handleConfirm(truck, false, false);
                     }}
                     android_ripple={{ color: "grey" }}
                   >

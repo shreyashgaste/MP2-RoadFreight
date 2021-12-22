@@ -7,7 +7,7 @@ import {
   ScrollView,
   Pressable,
 } from "react-native";
-const API_URL = "http://192.168.246.39:5000";
+const API_URL = "http://192.168.222.39:5000";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 const Home = ({ navigation }) => {
   const [cntTruck, setTruck] = useState("");

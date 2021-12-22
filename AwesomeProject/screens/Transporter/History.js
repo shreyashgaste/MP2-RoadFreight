@@ -11,7 +11,7 @@ import {
   Alert,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-const API_URL = "http://192.168.246.39:5000";
+const API_URL = "http://192.168.222.39:5000";
 const History = (navigation) => {
   const [data, setdata] = useState([""]);
   useEffect(() => {
@@ -60,24 +60,33 @@ const History = (navigation) => {
                 <Text style={styles.item}>: {truck.truckid}</Text>
                 <View style={styles.line} />
                 <View>
-                  {truck.transconfirm ? (
+                  {!truck.transconfirm && !truck.status ? (
+                    <View
+                      style={[{ backgroundColor: "red" }, styles.smallText]}
+                    >
+                      <Text style={{ color: "white" }}>CANCELLED</Text>
+                    </View>
+                  ) : (
+                    <View></View>
+                  )}
+                  {!truck.transconfirm && truck.status ? (
+                    <View
+                      style={[{ backgroundColor: "#ef7646" }, styles.smallText]}
+                    >
+                      <Text style={{ color: "white" }}>PENDING REQUEST</Text>
+                    </View>
+                  ) : (<View></View>
+                    // <View
+                    //   style={[{ backgroundColor: "green" }, styles.smallText]}
+                    // >
+                    //   <Text style={{ color: "white" }}>CONFIRMED</Text>
+                    // </View>
+                  )}
+                  {truck.transconfirm && truck.status ? (
                     <View
                       style={[{ backgroundColor: "green" }, styles.smallText]}
                     >
                       <Text style={{ color: "white" }}>CONFIRMED</Text>
-                    </View>
-                  ) : (
-                    <View
-                      style={[{ backgroundColor: "red" }, styles.smallText]}
-                    >
-                      <Text style={{ color: "white" }}>CANCELED</Text>
-                    </View>
-                  )}
-                  {truck.transconfirm && truck.status ? (
-                    <View
-                      style={[{ backgroundColor: "blue" }, styles.smallText]}
-                    >
-                      <Text style={{ color: "white" }}>WILL BE DELIVERED</Text>
                     </View>
                   ) : (
                     <View></View>

@@ -7,9 +7,9 @@ import {
 import{ AuthContext } from './Context';
 import { Ionicons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-const API_URL = "http://192.168.246.39:5000";
+const API_URL = "http://192.168.222.39:5000";
 const CustomDrawer = (props) => {
-  const { signOut, toggleTheme } = React.useContext(AuthContext);
+  const { signOut } = React.useContext(AuthContext);
  
   return (
     <View style={{ flex: 1 }}>
@@ -58,7 +58,7 @@ const CustomDrawer = (props) => {
             </Text>
           </View>
         </Pressable> */}
-        <Pressable onPress={() => {signOut()}} style={{ paddingVertical: 15 }}>
+        <Pressable onPress={signOut} style={{ paddingVertical: 15 }}>
           <View style={{ flexDirection: "row", alignItems: "center" }}>
             <Ionicons name="exit-outline" size={22} />
             <Text

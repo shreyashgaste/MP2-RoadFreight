@@ -18,7 +18,7 @@ import { Formik } from "formik";
 // } from "sharingan-rn-modal-dropdown";
 import Options from "../Common/Options";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-const API_URL = "http://192.168.246.39:5000";
+const API_URL = "http://192.168.222.39:5000";
 const TruckBooking = ({ navigation }) => {
  
   const [trucks, setTruck] = useState([]);

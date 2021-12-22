@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import {
   StyleSheet,
   Text,
@@ -12,8 +12,10 @@ import {
 } from "react-native";
 import { Formik } from "formik";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-const API_URL = "http://192.168.246.39:5000";
+import { AuthContext } from "../../components/Context";
+const API_URL = "http://192.168.222.39:5000";
 const TransporterSignin = ({ navigation }) => {
+  const {trans, toggleTrans} = useContext(AuthContext);
   const [text, setText] = useState("");
   useEffect(() => {
     async function fetchTransporter() {
@@ -26,35 +28,36 @@ const TransporterSignin = ({ navigation }) => {
     fetchTransporter();
   }, []);
   const handleSignin = async (values) => {
-    const res = await fetch(`${API_URL}/Transsignin`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: values.email,
-        password: values.password,
-      }),
-    })
-      .then(async (res) => {
-        const data = await res.json();
-        console.log(data);
-        if (data.error) {
-          Alert.alert("Unsucessful Login");
-          navigation.navigate("TransporterSignup");
-        } else {
-          Alert.alert("Success");
-          let { token } = data;
-          console.log(token);
-          await AsyncStorage.setItem("transemail", values.email);
-          await AsyncStorage.setItem("transauthToken", token);
-          setText(" ");
-          // navigation.navigate(`TransporterDashboard`);
-        }
+      const res = await fetch(`${API_URL}/Transsignin`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: values.email,
+          password: values.password,
+        }),
       })
-      .catch((error) => {
-        console.log(error);
-      });
+        .then(async (res) => {
+          const data = await res.json();
+          console.log(data);
+          if (data.error) {
+            Alert.alert("Unsucessful Login");
+            navigation.navigate("TransporterSignup");
+          } else {
+            Alert.alert("Success");
+            let { token } = data;
+            console.log(token);
+            await AsyncStorage.setItem("transemail", values.email);
+            await AsyncStorage.setItem("transauthToken", token);
+            setText(" ");
+            toggleTrans(true);
+            // navigation.navigate(`TransporterDashboard`);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
   };
   return (
     <SafeAreaView style={styles.container}>

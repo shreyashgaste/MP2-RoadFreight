@@ -11,7 +11,7 @@ import {
   Alert,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-const API_URL = "http://192.168.246.39:5000";
+const API_URL = "http://192.168.222.39:5000";
 const TransporterTruckList = ({ navigation }) => {
   const [data, setdata] = useState([""]);
   useEffect(() => {
